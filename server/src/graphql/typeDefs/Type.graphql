@@ -1,0 +1,16 @@
+type Sentence {
+    ID: ID!
+    text: String!
+    translation: String!
+    comments: [Word]
+    desc: String!
+    created: Date
+}
+
+type Word {
+    ID: ID!
+    name: String
+    translation: String
+    desc: String
+    created: Date
+}

@@ -1,0 +1,12 @@
+{
+	"plugins": [
+		"inline-import",
+		"transform-es2015-modules-commonjs",
+		"transform-class-properties",
+		"transform-decorators-legacy",
+		"transform-flow-strip-types",
+		"transform-es2015-destructuring",
+		"transform-object-rest-spread"
+	],
+	"presets": ["env"]
+}

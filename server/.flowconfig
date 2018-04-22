@@ -1,0 +1,7 @@
+[ignore]
+<PROJECT_ROOT>/build/.*
+<PROJECT_ROOT>/reports/.*
+
+[options]
+strip_root=true
+suppress_comment= \\(.\\|\n\\)*\\$FlowIgnore

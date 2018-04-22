@@ -1,0 +1,12 @@
+input sentenceInput {
+  text: String!
+  translation: String!
+  desc: String!
+  words: [wordInput!]
+}
+
+input wordInput {
+    name: String
+    translation: String
+    desc: String
+}
