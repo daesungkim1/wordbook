@@ -1,4 +1,4 @@
-import * as Sentence from './sentence'
+import Sentence from './sentence'
 
 export default {
   ...Sentence

@@ -1,1 +1,1 @@
-export const Sentences = (objects, args, { db }) => db()
+export const Sentences = (objects, args, { db }) => console.log(db)

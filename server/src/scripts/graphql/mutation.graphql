@@ -1,0 +1,46 @@
+###
+mutation CreateSentence($sentence: sentenceArgs) {
+    createSentence(sentence: $sentence) {
+        id
+        rev
+        text
+        translation
+        comments
+        desc
+    }
+}
+
+{
+  "sentence" : {
+      "text": "This is some example sentence",
+      "translation": "이것은 번역문이 들어갈 자리이다.",
+      "desc": "문장에 대한 설명은 여기",
+  }
+}
+
+###
+mutation UpdateSentence($id: ID!, $rev: ID!, $sentence: sentenceArgs) {
+    updateSentence(id: $id, rev: $rev, sentence: $sentence) {
+        id
+        rev
+        text
+        translation
+        comments {
+          refWord
+          desc
+          wordId
+        }
+        desc
+    }
+}
+
+
+{
+  "id": "",
+  "rev": "",
+  "sentence" : {
+      "text": "This is some example sentence",
+      "translation": "이것은 번역문이 들어갈 자리이다.",
+      "desc": "문장에 대한 설명은 여기",
+  }
+}

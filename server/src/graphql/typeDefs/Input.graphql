@@ -1,12 +1,17 @@
-input sentenceInput {
+input sentenceArgs {
   text: String!
   translation: String!
   desc: String!
-  words: [wordInput!]
 }
 
-input wordInput {
-    name: String
-    translation: String
-    desc: String
+input commentArgs {
+  id: ID! # sentence id
+  rev: ID! # sentence rev
+  refWord: String!
+  desc: String
+}
+
+input wordArgs {
+  label: String
+  meaning: String
 }

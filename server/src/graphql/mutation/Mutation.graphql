@@ -1,3 +1,15 @@
 type Mutation {
-    createSentence(sentence: sentenceInput): Sentence
+  # 문장 add/update/delete
+  createSentence(sentence: sentenceArgs!): Sentence
+  updateSentence(id: ID!, rev: ID!, sentence: sentenceArgs): Sentence
+  deleteSentence(id: ID!, rev: ID!): Boolean
+
+  # 문장의 단어에 대한 주석 add/update/delete
+  updateCommnet(comment: commentArgs!, wordId: ID): Comment
+  deleteComment(comment: commentArgs!): Boolean
+
+  # 단어 정의 (문장내의 한 comment에 의해 참조될 수 있음)
+  createWord(word: wordArgs!): Word
+  updateWord(id: ID!, rev: ID!, word: wordArgs!): Word
+  deleteWord(id: ID!, rev: ID!): Word
 }
