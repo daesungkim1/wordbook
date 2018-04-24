@@ -1,7 +1,7 @@
 # docType: sentence/v1
 type Sentence {
-  id: ID
-  rev: ID
+  key: ID
+  type: String
   text: String! # 문장
   translation: String! # 번역
   comments: [Comment!] # 주석
@@ -12,13 +12,13 @@ type Sentence {
 type Comment {
   refWord: String! # 문장내 단어
   desc: String! # 문장내의 해석
-  wordId: ID # 원본단어 link
+  word_fk: ID # 원본단어 link
 }
 
 # docType: word/v1
 type Word {
-  id: ID
-  rev: ID
+  key: ID
+  type: String
   label: String! # 단어
   meaning: String! # 뜻
   created: Date

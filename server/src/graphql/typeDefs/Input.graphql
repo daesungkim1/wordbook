@@ -5,10 +5,9 @@ input sentenceArgs {
 }
 
 input commentArgs {
-  id: ID! # sentence id
-  rev: ID! # sentence rev
   refWord: String!
-  desc: String
+  desc: String!
+  word_fk: ID
 }
 
 input wordArgs {

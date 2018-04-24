@@ -1,4 +1,15 @@
-import nano from 'nano'
-import Promise from 'bluebird'
+// create files on node_modules/secret.js
+//
+// module.exports = {
+//   user: <username>,
+//   password: <password>,
+// }
 
-export default Promise.promisifyAll(nano('http://127.0.0.1:5984/wordbook'));
+import Promise from 'bluebird'
+import couchbase from 'couchbase'
+import { user, password } from 'secret'
+
+const cluster = new couchbase.Cluster('couchbase://127.0.0.1/')
+cluster.authenticate(user, password)
+
+export default Promise.promisifyAll(cluster.openBucket('jadu'))

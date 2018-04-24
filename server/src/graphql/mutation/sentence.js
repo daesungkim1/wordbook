@@ -1,23 +1,38 @@
 import * as docType from '../docType'
+import uuid from 'uuid'
 
-// Mutation for sentence/comments
 export default {
-  createSentence: (obj, { sentence }, { db }) => {
-    const doc = { ...sentence, docType: docType.SENTENCE_V1 }
-    return db.insertAsync(doc).then(({ id, rev }) => ({ ...doc, id, rev }))
+  /**
+   * create sentence without comments
+   */
+  createSentence: async (obj, { sentence }, { db }) => {
+    const key = uuid.v4()
+    await db.insertAsync(key, {
+      // TODO: do not manipulate raw JSON object
+      key,
+      type: docType.SENTENCE_V1,
+      ...sentence,
+    })
+    const { value } = await db.getAsync(key)
+    return value
   },
 
-  updateSentence: (obj, { id: _id, rev: _rev, sentence }, { db }) => {
-    const doc = { ...sentence, _id, _rev }
-    // TODO fix
-    return db.insertAsync(doc).then(({ id, rev }) => ({ ...doc, id, rev }))
+  /**
+   * update sentence
+   */
+  updateSentence: async (obj, { key, sentence }, { db }) => {
+    await db.upsertAsync(key, {
+      // TODO: do not manipulate raw JSON object
+      key,
+      type: docType.SENTENCE_V1,
+      ...sentence,
+    })
+    const { value } = await db.getAsync(key)
+    return value
   },
-  /*
-  updateCommnet: (obj, { comment, wordId }, { db }) => {
-    const { id, rev, refWord, desc } = comment
-    const item = { refWord, desc, wordId }
-    const doc = { id, rev, comments: [item] }
-    return db.insertAsync(doc).then(({ id, rev }) => ({ ...doc, id, rev }))
-  },
-  */
+
+  /**
+   * add comments
+   */
+  insertCommnet: (obj, { key, comment }, { db }) => {},
 }

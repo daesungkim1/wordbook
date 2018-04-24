@@ -1,14 +1,14 @@
 ###
-mutation CreateSentence($sentence: sentenceArgs) {
-    createSentence(sentence: $sentence) {
-        id
-        rev
-        text
-        translation
-        comments
-        desc
-    }
+mutation CreateSentence($sentence: sentenceArgs!) {
+  createSentence(sentence: $sentence) {
+    key
+    text
+    type
+    translation
+    desc
+  }
 }
+
 
 {
   "sentence" : {
