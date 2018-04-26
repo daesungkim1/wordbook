@@ -1,5 +1,18 @@
+const prettierConfig = {
+  tabWidth: 2,
+  semi: false,
+  singleQuote: true,
+  trailingComma: 'es5',
+}
+
 module.exports = {
-  extends: 'eslint:recommended',
+  extends: [
+    'eslint:recommended',
+    'airbnb',
+    'prettier',
+    'prettier/flowtype',
+    'prettier/react',
+  ],
   parser: 'babel-eslint',
   parserOptions: {
     ecmaVersion: 7,
@@ -9,6 +22,7 @@ module.exports = {
     },
   },
   rules: {
+    'prettier/prettier': ['error', prettierConfig],
     'graphql/template-strings': [
       'error',
       {
@@ -17,5 +31,5 @@ module.exports = {
       },
     ],
   },
-  plugins: ['graphql'],
+  plugins: ['jest', 'graphql', 'flowtpye', 'prettier'],
 }

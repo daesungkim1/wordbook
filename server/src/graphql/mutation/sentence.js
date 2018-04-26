@@ -1,5 +1,6 @@
-import * as docType from '../docType'
 import uuid from 'uuid'
+
+import * as docType from '../docType'
 
 export default {
   /**
@@ -7,7 +8,7 @@ export default {
    */
   createSentence: async (obj, { sentence }, { db }) => {
     const key = uuid.v4()
-    await db.insertAsync(key, {
+    await db.upsertAsync(key, {
       key,
       type: docType.SENTENCE_V1,
       ...sentence,
