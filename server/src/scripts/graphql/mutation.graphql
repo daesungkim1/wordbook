@@ -19,16 +19,15 @@ mutation CreateSentence($sentence: sentenceArgs!) {
 }
 
 ###
-mutation UpdateSentence($id: ID!, $rev: ID!, $sentence: sentenceArgs) {
-    updateSentence(id: $id, rev: $rev, sentence: $sentence) {
-        id
-        rev
+mutation UpdateSentence($key: ID!, $sentence: sentenceArgs) {
+    updateSentence(key: $id, sentence: $sentence) {
+        key
         text
         translation
         comments {
           refWord
           desc
-          wordId
+          word_fk
         }
         desc
     }
@@ -36,11 +35,35 @@ mutation UpdateSentence($id: ID!, $rev: ID!, $sentence: sentenceArgs) {
 
 
 {
-  "id": "",
-  "rev": "",
+  "key": "",
   "sentence" : {
       "text": "This is some example sentence",
       "translation": "이것은 번역문이 들어갈 자리이다.",
       "desc": "문장에 대한 설명은 여기",
+  }
+}
+
+###
+mutation InsertComment($key: ID!, $comment: commentArgs!) {
+    insertComment(key: $key, comment: $comment) {
+        key
+        text
+        translation
+        comments {
+          refWord
+          desc
+          word_fk
+        }
+        desc
+    }
+}
+
+
+{
+  "key": "",
+  "comment" : {
+      "refWord": "example",
+      "desc": "",
+      "word_fk": null
   }
 }

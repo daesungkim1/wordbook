@@ -8,7 +8,6 @@ export default {
   createSentence: async (obj, { sentence }, { db }) => {
     const key = uuid.v4()
     await db.insertAsync(key, {
-      // TODO: do not manipulate raw JSON object
       key,
       type: docType.SENTENCE_V1,
       ...sentence,
@@ -22,7 +21,6 @@ export default {
    */
   updateSentence: async (obj, { key, sentence }, { db }) => {
     await db.upsertAsync(key, {
-      // TODO: do not manipulate raw JSON object
       key,
       type: docType.SENTENCE_V1,
       ...sentence,
@@ -34,5 +32,20 @@ export default {
   /**
    * add comments
    */
-  insertCommnet: (obj, { key, comment }, { db }) => {},
+  insertComment: async (obj, { key, comment }, { db, mutateAsync }) => {
+    try {
+      await mutateAsync({
+        method: 'arrayAppend',
+        key,
+        path: 'comments',
+        value: comment,
+      })
+    } catch (error) {
+      console.log(error)
+      return error
+    }
+
+    const { value } = await db.getAsync(key)
+    return value
+  },
 }

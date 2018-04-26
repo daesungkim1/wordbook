@@ -6,7 +6,7 @@ import { graphiqlKoa } from 'apollo-server-koa'
 import { makeExecutableSchema } from 'graphql-tools'
 
 import { N1qlQuery as NQL } from 'couchbase'
-import db from './db'
+import { db, mutateAsync } from './db'
 
 import typeDefs from './typeDefs'
 import Query from './query'
@@ -17,4 +17,8 @@ const schema = makeExecutableSchema({ typeDefs, resolvers })
 
 export default koaRouter()
   .get('/graphiql', graphiqlKoa({ endpointURL: '/graphql' }))
-  .post('/graphql', koaBody(), graphqlKoa({ schema, context: { db, NQL } }))
+  .post(
+    '/graphql',
+    koaBody(),
+    graphqlKoa({ schema, context: { db, mutateAsync, NQL } })
+  )

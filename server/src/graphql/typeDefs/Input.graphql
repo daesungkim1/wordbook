@@ -2,11 +2,12 @@ input sentenceArgs {
   text: String!
   translation: String!
   desc: String!
+  comments: [commentArgs!]
 }
 
 input commentArgs {
   refWord: String!
-  desc: String!
+  desc: String
   word_fk: ID
 }
 

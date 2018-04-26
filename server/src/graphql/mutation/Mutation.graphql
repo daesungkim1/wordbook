@@ -5,7 +5,7 @@ type Mutation {
   deleteSentence(key: ID!): Boolean
 
   # 문장의 단어에 대한 주석 add/update/delete
-  insertCommnet(key: ID!, comment: commentArgs!): Comment
+  insertComment(key: ID!, comment: commentArgs!): Sentence
   deleteComment(comment: commentArgs!): Boolean
 
   # 단어 정의 (문장내의 한 comment에 의해 참조될 수 있음)
