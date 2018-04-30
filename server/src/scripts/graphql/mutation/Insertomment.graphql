@@ -1,0 +1,13 @@
+mutation InsertComment($key: ID!, $comment: commentArgs!) {
+  insertComment(key: $key, comment: $comment) {
+    key
+    text
+    translation
+    comments {
+      refWord
+      desc
+      word_fk
+    }
+    desc
+  }
+}

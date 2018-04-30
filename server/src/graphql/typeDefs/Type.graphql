@@ -1,3 +1,9 @@
+type Status {
+  status: Boolean!
+  key: ID
+  body: JSON
+}
+
 # docType: sentence/v1
 type Sentence {
   key: ID

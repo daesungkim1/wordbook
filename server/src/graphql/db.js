@@ -19,7 +19,7 @@ cluster.authenticate(user, password)
 /**
  * Bucket
  */
-export const db = cluster.openBucket(dbname)
+const db = cluster.openBucket(dbname)
 
 /**
  * mutate docuemnt utility
@@ -39,7 +39,7 @@ export const db = cluster.openBucket(dbname)
  * counter(path, delta, options) → {MutateInBuilder}
  * remove(path, options) → {MutateInBuilder}
  */
-export const mutateAsync = ({ method, key, path, value, options, delta }) =>
+const mutateAsync = ({ method, key, path, value, options, delta }) =>
   new Promise((resolve, reject) => {
     const builder = db.mutateIn(key)
     if (method === 'remove') {
@@ -62,3 +62,5 @@ export const mutateAsync = ({ method, key, path, value, options, delta }) =>
       resolve(response)
     })
   })
+
+export default { db, util: { mutateAsync } }

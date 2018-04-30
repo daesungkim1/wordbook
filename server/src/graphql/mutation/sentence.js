@@ -1,5 +1,4 @@
 import uuid from 'uuid'
-
 import * as docType from '../docType'
 
 export default {
@@ -8,13 +7,12 @@ export default {
    */
   createSentence: async (obj, { sentence }, { db }) => {
     const key = uuid.v4()
-    await db.upsertAsync(key, {
+    const result = await db.upsertAsync(key, {
       key,
       type: docType.SENTENCE_V1,
       ...sentence,
     })
-    const { value } = await db.getAsync(key)
-    return value
+    return { key, status: true }
   },
 
   /**
@@ -33,9 +31,9 @@ export default {
   /**
    * add comments
    */
-  insertComment: async (obj, { key, comment }, { db, mutateAsync }) => {
+  insertComment: async (obj, { key, comment }, { db, util }) => {
     try {
-      await mutateAsync({
+      await util.mutateAsync({
         method: 'arrayAppend',
         key,
         path: 'comments',
