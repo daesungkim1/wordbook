@@ -1,0 +1,8 @@
+uuid:
+  $ref: db_meta.yml#/uuid
+type:
+  $ref: db_meta.yml#/type
+created:
+  $ref: db_meta.yml#/created
+createdBy:
+  $ref: db_meta.yml#/createdBy

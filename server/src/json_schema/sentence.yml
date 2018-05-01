@@ -1,0 +1,37 @@
+$schema: http://json-schema.org/draft-06/schema#
+title: sentence
+description: sentence scheam version 1
+type: object
+required: [id, type, text, created]
+properties:
+  id:
+    $ref: '#/definitions/uuid'
+  type:
+    $ref: '#/definitions/type'
+  created:
+    $ref: '#/definitions/created'
+  createdBy:
+    $ref: '#/definitions/createdBy'
+  text:
+    type: string
+    default: ''
+  translation:
+    type: string
+    default: ''
+  desc:
+    type: string
+    default: ''
+  comments:
+    type: array
+    items:
+      type: object
+      required: [refWord, desc, word_fk]
+      properties:
+        refWord:
+          type: string
+        desc:
+          type: string
+        word_fk:
+          $ref: '#/definitions/uuid'
+definitions:
+  $ref: ./definitions/definitions.yml

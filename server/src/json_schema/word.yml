@@ -1,0 +1,19 @@
+$schema: http://json-schema.org/draft-06/schema#
+title: word
+description: word scheam version 1
+type: object
+required: [id, type, text, created]
+properties:
+  id:
+    $ref: '#/definitions/uuid'
+  type:
+    $ref: '#/definitions/type'
+  created:
+    $ref: '#/definitions/created'
+  createdBy:
+    $ref: '#/definitions/createdBy'
+  text:
+    type: string
+    default: ''
+definitions:
+  $ref: ./definitions/definitions.yml

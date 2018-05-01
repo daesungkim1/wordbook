@@ -1,0 +1,143 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`sentence sentence v1 1`] = `
+Object {
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "definitions": Object {
+    "created": Object {
+      "default": 0,
+      "type": "integer",
+    },
+    "createdBy": Object {
+      "default": "",
+      "type": "string",
+    },
+    "type": Object {
+      "default": null,
+      "enum": Array [
+        "sentence/v1",
+        "word/v1",
+      ],
+      "type": "string",
+    },
+    "uuid": Object {
+      "default": "",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$",
+      "type": "string",
+    },
+  },
+  "description": "sentence scheam version 1",
+  "properties": Object {
+    "comments": Object {
+      "items": Object {
+        "properties": Object {
+          "desc": Object {
+            "type": "string",
+          },
+          "refWord": Object {
+            "type": "string",
+          },
+          "word_fk": Object {
+            "$ref": "#/definitions/uuid",
+          },
+        },
+        "required": Array [
+          "refWord",
+          "desc",
+          "word_fk",
+        ],
+        "type": "object",
+      },
+      "type": "array",
+    },
+    "created": Object {
+      "$ref": "#/definitions/created",
+    },
+    "createdBy": Object {
+      "$ref": "#/definitions/createdBy",
+    },
+    "desc": Object {
+      "default": "",
+      "type": "string",
+    },
+    "id": Object {
+      "$ref": "#/definitions/uuid",
+    },
+    "text": Object {
+      "default": "",
+      "type": "string",
+    },
+    "translation": Object {
+      "default": "",
+      "type": "string",
+    },
+    "type": Object {
+      "$ref": "#/definitions/type",
+    },
+  },
+  "required": Array [
+    "id",
+    "type",
+    "text",
+    "created",
+  ],
+  "title": "sentence",
+  "type": "object",
+}
+`;
+
+exports[`sentence word v1 1`] = `
+Object {
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "definitions": Object {
+    "created": Object {
+      "default": 0,
+      "type": "integer",
+    },
+    "createdBy": Object {
+      "default": "",
+      "type": "string",
+    },
+    "type": Object {
+      "default": null,
+      "enum": Array [
+        "sentence/v1",
+        "word/v1",
+      ],
+      "type": "string",
+    },
+    "uuid": Object {
+      "default": "",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$",
+      "type": "string",
+    },
+  },
+  "description": "word scheam version 1",
+  "properties": Object {
+    "created": Object {
+      "$ref": "#/definitions/created",
+    },
+    "createdBy": Object {
+      "$ref": "#/definitions/createdBy",
+    },
+    "id": Object {
+      "$ref": "#/definitions/uuid",
+    },
+    "text": Object {
+      "default": "",
+      "type": "string",
+    },
+    "type": Object {
+      "$ref": "#/definitions/type",
+    },
+  },
+  "required": Array [
+    "id",
+    "type",
+    "text",
+    "created",
+  ],
+  "title": "word",
+  "type": "object",
+}
+`;
