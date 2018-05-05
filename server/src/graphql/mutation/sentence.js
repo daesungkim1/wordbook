@@ -1,24 +1,22 @@
-import uuid from 'uuid'
-import * as docType from '../docType'
-
 export default {
   /**
    * create sentence without comments
    */
-  createSentence: async (obj, { sentence }, { db }) => {
-    const key = uuid.v4()
-    const result = await db.upsertAsync(key, {
-      key,
-      type: docType.SENTENCE_V1,
-      ...sentence,
-    })
-    return { key, status: true }
+  createSentence: async (obj, { sentence }, { model }) => {
+    try {
+      const Sentence = model({ name: 'sentence', data: sentence })
+      Sentence.validate()
+      const result = await Sentence.save()
+      return { key: Sentence.doc.id, status: true }
+    } catch (error) {
+      //TODO when promise is rejected...
+    }
   },
 
   /**
    * update sentence
    */
-  updateSentence: async (obj, { key, sentence }, { db }) => {
+  updateSentence: async (obj, { key, sentence }, { model }) => {
     await db.upsertAsync(key, {
       key,
       type: docType.SENTENCE_V1,
@@ -31,7 +29,7 @@ export default {
   /**
    * add comments
    */
-  insertComment: async (obj, { key, comment }, { db, util }) => {
+  insertComment: async (obj, { key, comment }, { model }) => {
     try {
       await util.mutateAsync({
         method: 'arrayAppend',

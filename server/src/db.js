@@ -5,10 +5,9 @@
 //   password: <password>,
 //   dbname: <dbname>
 // }
-
+import { user, password, dbname } from 'secret'
 import Promise from 'bluebird'
 import couchbase from 'couchbase'
-import { user, password, dbname } from 'secret'
 
 // promisify
 couchbase.BucketImpl = Promise.promisifyAll(couchbase.BucketImpl.prototype)
@@ -39,7 +38,7 @@ const db = cluster.openBucket(dbname)
  * counter(path, delta, options) → {MutateInBuilder}
  * remove(path, options) → {MutateInBuilder}
  */
-const mutateAsync = ({ method, key, path, value, options, delta }) =>
+export const mutateAsync = ({ method, key, path, value, options, delta }) =>
   new Promise((resolve, reject) => {
     const builder = db.mutateIn(key)
     if (method === 'remove') {
@@ -63,4 +62,4 @@ const mutateAsync = ({ method, key, path, value, options, delta }) =>
     })
   })
 
-export default { db, util: { mutateAsync } }
+export default db

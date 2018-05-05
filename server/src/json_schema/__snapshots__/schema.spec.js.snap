@@ -2,14 +2,14 @@
 
 exports[`sentence sentence v1 1`] = `
 Object {
-  "$schema": "http://json-schema.org/draft-06/schema#",
+  "$schema": "http://json-schema.org/draft-07/schema#",
   "definitions": Object {
     "created": Object {
-      "default": 0,
+      "default": null,
       "type": "integer",
     },
     "createdBy": Object {
-      "default": "",
+      "default": null,
       "type": "string",
     },
     "type": Object {
@@ -21,7 +21,7 @@ Object {
       "type": "string",
     },
     "uuid": Object {
-      "default": "",
+      "default": null,
       "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$",
       "type": "string",
     },
@@ -29,6 +29,7 @@ Object {
   "description": "sentence scheam version 1",
   "properties": Object {
     "comments": Object {
+      "default": Array [],
       "items": Object {
         "properties": Object {
           "desc": Object {
@@ -57,18 +58,18 @@ Object {
       "$ref": "#/definitions/createdBy",
     },
     "desc": Object {
-      "default": "",
+      "default": null,
       "type": "string",
     },
     "id": Object {
       "$ref": "#/definitions/uuid",
     },
     "text": Object {
-      "default": "",
+      "default": null,
       "type": "string",
     },
     "translation": Object {
-      "default": "",
+      "default": null,
       "type": "string",
     },
     "type": Object {
@@ -91,11 +92,11 @@ Object {
   "$schema": "http://json-schema.org/draft-06/schema#",
   "definitions": Object {
     "created": Object {
-      "default": 0,
+      "default": null,
       "type": "integer",
     },
     "createdBy": Object {
-      "default": "",
+      "default": null,
       "type": "string",
     },
     "type": Object {
@@ -107,7 +108,7 @@ Object {
       "type": "string",
     },
     "uuid": Object {
-      "default": "",
+      "default": null,
       "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$",
       "type": "string",
     },

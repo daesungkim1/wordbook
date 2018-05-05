@@ -4,11 +4,11 @@ type:
   default: null
 uuid:
   type: string
-  default: ''
+  default: null
   pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
 created:
   type: integer
-  default: 0
+  default: null
 createdBy:
   type: string
-  default: ''
+  default: null

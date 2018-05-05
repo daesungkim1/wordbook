@@ -1,5 +1,6 @@
 import koa from 'koa'
 import koaRouter from 'koa-router'
+import bodyParser from 'koa-bodyparser'
 import uuid from 'uuid'
 
 import { graphqlRouter } from './middlewares'
@@ -16,6 +17,8 @@ export default () => {
     ctx.set('X-Request-ID', uuid.v4())
     ctx.set('X-Response-Time', `${ms}ms`)
   })
+
+  app.use(bodyParser())
 
   // graphql middleware
   router.use(graphqlRouter.routes())

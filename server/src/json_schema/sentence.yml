@@ -1,4 +1,4 @@
-$schema: http://json-schema.org/draft-06/schema#
+$schema: http://json-schema.org/draft-07/schema#
 title: sentence
 description: sentence scheam version 1
 type: object
@@ -14,15 +14,16 @@ properties:
     $ref: '#/definitions/createdBy'
   text:
     type: string
-    default: ''
+    default: null
   translation:
     type: string
-    default: ''
+    default: null
   desc:
     type: string
-    default: ''
+    default: null
   comments:
     type: array
+    default: []
     items:
       type: object
       required: [refWord, desc, word_fk]
