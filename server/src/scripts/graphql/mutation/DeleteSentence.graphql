@@ -1,0 +1,7 @@
+mutation DeleteSentence($id: ID!) {
+  deleteSentence(id: $id) {
+    id
+    status
+    body
+  }
+}

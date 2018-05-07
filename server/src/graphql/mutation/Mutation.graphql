@@ -1,15 +1,15 @@
 type Mutation {
   # 문장 add/update/delete
   createSentence(sentence: JSON!): Status
-  updateSentence(key: ID!, sentence: JSON): Status
-  deleteSentence(key: ID!): Status
+  updateSentence(id: ID!, sentence: JSON): Status
+  deleteSentence(id: ID!): Status
 
   # 문장의 단어에 대한 주석 add/update/delete
-  insertComment(key: ID!, comment: JSON!): Status
+  insertComment(id: ID!, sentence: JSON!): Status
   deleteComment(comment: JSON!): Status
 
   # 단어 정의 (문장내의 한 comment에 의해 참조될 수 있음)
   createWord(word: JSON!): Status
-  updateWord(key: ID!, word: JSON!): Status
-  deleteWord(key: ID!): Status
+  updateWord(id: ID!, word: JSON!): Status
+  deleteWord(id: ID!): Status
 }

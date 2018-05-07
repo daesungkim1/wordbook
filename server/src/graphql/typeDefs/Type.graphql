@@ -1,12 +1,12 @@
 type Status {
   status: Boolean!
-  key: ID
+  id: ID
   body: JSON
 }
 
 # docType: sentence/v1
 type Sentence {
-  key: ID
+  id: ID
   type: String
   text: String! # 문장
   translation: String! # 번역
@@ -24,7 +24,7 @@ type Comment {
 
 # docType: word/v1
 type Word {
-  key: ID
+  id: ID
   type: String
   label: String! # 단어
   meaning: String! # 뜻

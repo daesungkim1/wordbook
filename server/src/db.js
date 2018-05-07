@@ -38,15 +38,19 @@ const db = cluster.openBucket(dbname)
  * counter(path, delta, options) → {MutateInBuilder}
  * remove(path, options) → {MutateInBuilder}
  */
-export const mutateAsync = ({ method, key, path, value, options, delta }) =>
+couchbase.BucketImpl.mutateAsync = ({ method, id, params }) =>
   new Promise((resolve, reject) => {
-    const builder = db.mutateIn(key)
+    const builder = db.mutateIn(id)
     if (method === 'remove') {
-      builder.remove(path, options)
+      params.map(({ path, options }) => builder.remove(path, options))
     } else if (method === 'counter') {
-      builder.counter(path, delta, options)
+      params.map(({ path, delta, options }) =>
+        builder.remove(path, delta, options)
+      )
     } else {
-      builder[method](path, value, options)
+      params.map(({ path, value, options }) =>
+        builder[method](path, value, options)
+      )
     }
     builder.execute((error, response) => {
       if (error) {

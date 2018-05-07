@@ -1,6 +1,6 @@
 mutation CreateSentence($sentence: JSON!) {
   createSentence(sentence: $sentence) {
-    key
+    id
     status
     body
   }

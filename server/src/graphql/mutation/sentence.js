@@ -2,44 +2,54 @@ export default {
   /**
    * create sentence without comments
    */
-  createSentence: async (obj, { sentence }, { model }) => {
+  createSentence: async (obj, { sentence }, { Model }) => {
     try {
-      const Sentence = model({ name: 'sentence', data: sentence })
+      const Sentence = Model({ name: 'sentence', data: sentence })
       Sentence.validate()
       const result = await Sentence.save()
-      return { key: Sentence.doc.id, status: true }
+      console.log(result)
+      return { id: Sentence.doc.id, status: true }
     } catch (error) {
       //TODO when promise is rejected...
+      console.log(error)
     }
   },
 
   /**
    * update sentence
    */
-  updateSentence: async (obj, { key, sentence }, { model }) => {
-    await db.upsertAsync(key, {
-      key,
-      type: docType.SENTENCE_V1,
-      ...sentence,
-    })
-    const { value } = await db.getAsync(key)
-    return value
+  updateSentence: async (obj, { id, sentence }, { Model }) => {
+    try {
+      const Sentence = Model({ id, name: 'sentence', data: sentence })
+      const result = await Sentence.update()
+      return { id: Sentence.doc.id, status: true }
+    } catch (error) {
+      console.log(error)
+    }
   },
 
   /**
-   * add comments
+   * delete sentence
    */
-  insertComment: async (obj, { key, comment }, { model }) => {
+  deleteSentence: async (obj, { id }, { Model }) => {
     try {
-      await util.mutateAsync({
-        method: 'arrayAppend',
-        key,
-        path: 'comments',
-        value: comment,
-      })
+      const Sentence = Model({ id, name: 'sentence' })
+      const result = await Sentence.remove()
+      return { id: Sentence.doc.id, status: true }
     } catch (error) {
       console.log(error)
-      return error
+    }
+  },
+  /**
+   * add comments
+   */
+  insertComment: async (obj, { id, sentence }, { Model }) => {
+    try {
+      const Sentence = Model({ id, name: 'sentence', data: sentence })
+      const result = await Sentence.addComment()
+      return { id: Sentence.doc.id, status: true }
+    } catch (error) {
+      console.log(error)
     }
 
     const { value } = await db.getAsync(key)

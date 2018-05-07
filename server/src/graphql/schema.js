@@ -1,4 +1,4 @@
-import { merge } from 'lodash'
+import { merge } from 'ramda'
 import { makeExecutableSchema } from 'graphql-tools'
 
 import typeDefs from './typeDefs'

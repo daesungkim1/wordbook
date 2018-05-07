@@ -6,4 +6,4 @@ import Mutation from '../mutation/Mutation.graphql'
 import Query from '../query/Query.graphql'
 
 // import as string
-export default `${Scalar} ${Enum} ${Input} ${Type} ${Mutation} ${Query}`
+export default Scalar + Enum + Input + Type + Mutation + Query

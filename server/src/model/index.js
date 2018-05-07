@@ -1,8 +1,13 @@
-import flow from 'lodash/fp/flow'
+import { pipe } from 'ramda'
 
 import withDoc from './util/withDoc'
 import withValidate from './util/withValidate'
-import withModel from './util/withModel'
 
-export default (conf: { name: string, data: any }) =>
-  flow(withDoc, withValidate, withModel)(conf)
+import db from '../db'
+import sentence from './sentence'
+import word from './word'
+
+const withModel = { sentence, word }
+
+export default (conf: { id: string, name: string, data: any }) =>
+  pipe(withDoc, withValidate, withModel[conf.name](db))(conf)

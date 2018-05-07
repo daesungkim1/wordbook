@@ -1,4 +1,7 @@
-mutation UpdateSentence($key: ID!, $sentence: sentenceArgs!) {
-  updateSentence(key: $id, sentence: $sentence) {
-    ...Sentence
+mutation UpdateSentence($id: ID!, $sentence: JSON!) {
+  updateSentence(id: $id, sentence: $sentence) {
+    id
+    status
+    body
+  }
 }
